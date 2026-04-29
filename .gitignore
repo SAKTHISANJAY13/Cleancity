@@ -1,0 +1,17 @@
+node_modules/
+.env
+.env.local
+.env.backup
+*.log
+npm-debug.log*
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+dist/
+build/
+.vercel
+.firebase/
+firebase-debug.log
