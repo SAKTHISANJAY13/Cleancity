@@ -7,6 +7,7 @@ import ReportsList from './components/ReportsList';
 import MapView from './components/MapView';
 import Statistics from './components/Statistics';
 import LeaderboardWidget from './components/LeaderboardWidget';
+import Functionalities from './pages/functionalities';
 import './index.css';
 
 export default function App() {
@@ -40,7 +41,8 @@ export default function App() {
     { id: 'upload', icon: '📸', label: 'Upload Report' },
     { id: 'reports', icon: '📋', label: 'Reports' },
     { id: 'map', icon: '🗺️', label: 'Map View' },
-    { id: 'stats', icon: '📊', label: 'Statistics' }
+    { id: 'stats', icon: '📊', label: 'Statistics' },
+    { id: 'features', icon: '✨', label: 'Features' }
   ];
 
   return (
@@ -150,6 +152,13 @@ export default function App() {
           {activeTab === 'stats' && (
             <div className="animate-slideUp">
               <Statistics />
+            </div>
+          )}
+
+          {/* Features Tab */}
+          {activeTab === 'features' && (
+            <div className="animate-slideUp">
+              <Functionalities />
             </div>
           )}
         </div>
