@@ -8,6 +8,7 @@ import MapView from './components/MapView';
 import Statistics from './components/Statistics';
 import LeaderboardWidget from './components/LeaderboardWidget';
 import Functionalities from './pages/functionalities';
+import ImpactPage from './pages/impact';
 import './index.css';
 
 export default function App() {
@@ -42,7 +43,8 @@ export default function App() {
     { id: 'reports', icon: '📋', label: 'Reports' },
     { id: 'map', icon: '🗺️', label: 'Map View' },
     { id: 'stats', icon: '📊', label: 'Statistics' },
-    { id: 'features', icon: '✨', label: 'Features' }
+    { id: 'features', icon: '✨', label: 'Features' },
+    { id: 'impact', icon: '🌍', label: 'Impact' }
   ];
 
   return (
@@ -159,6 +161,13 @@ export default function App() {
           {activeTab === 'features' && (
             <div className="animate-slideUp">
               <Functionalities />
+            </div>
+          )}
+
+          {/* Impact Tab */}
+          {activeTab === 'impact' && (
+            <div className="animate-slideUp">
+              <ImpactPage />
             </div>
           )}
         </div>
