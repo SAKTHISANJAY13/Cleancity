@@ -6,6 +6,7 @@ import ImageUpload from './components/ImageUpload';
 import ReportsList from './components/ReportsList';
 import MapView from './components/MapView';
 import Statistics from './components/Statistics';
+import CommunityImpact from './components/CommunityImpact';
 import LeaderboardWidget from './components/LeaderboardWidget';
 import Functionalities from './pages/functionalities';
 import ImpactPage from './pages/impact';
@@ -42,9 +43,10 @@ export default function App() {
     { id: 'upload', icon: '📸', label: 'Upload Report' },
     { id: 'reports', icon: '📋', label: 'Reports' },
     { id: 'map', icon: '🗺️', label: 'Map View' },
-    { id: 'stats', icon: '📊', label: 'Statistics' },
+    { id: 'impact', icon: '🌍', label: 'Impact' },
     { id: 'features', icon: '✨', label: 'Features' },
-    { id: 'impact', icon: '🌍', label: 'Impact' }
+    { id: 'stats', icon: '📊', label: 'Statistics' },
+    { id: 'community', icon: '🌱', label: 'Community' }
   ];
 
   return (
@@ -164,10 +166,17 @@ export default function App() {
             </div>
           )}
 
-          {/* Impact Tab */}
+          {/* City Impact Tab */}
           {activeTab === 'impact' && (
             <div className="animate-slideUp">
               <ImpactPage />
+            </div>
+          )}
+
+          {/* Community Page Tab */}
+          {activeTab === 'community' && (
+            <div className="animate-slideUp">
+              <CommunityImpact />
             </div>
           )}
         </div>
