@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Zap, Award, Users, Smartphone, Lock, Palette, Cloud } from 'lucide-react';
 
 const Functionalities = () => {
-  const [expandedFeature, setExpandedFeature] = useState(0);
+  const [expandedFeature, setExpandedFeature] = useState(null);
+  const [hoveredCard, setHoveredCard] = useState(null);
 
   const features = [
     {
@@ -170,104 +171,244 @@ const Functionalities = () => {
       <div className="fixed top-1/3 right-1/4 w-96 h-96 bg-fuchsia-500 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-blob animation-delay-4000"></div>
       <div className="fixed bottom-0 left-1/2 w-96 h-96 bg-lime-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000"></div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 py-16">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-lime-400 bg-clip-text text-transparent mb-4">
-            CleanCity Functionalities
+      <div className="relative z-10 max-w-7xl mx-auto px-4 py-20">
+        {/* Header Section */}
+        <div className="text-center mb-20">
+          <div className="inline-block mb-6">
+            <span className="text-5xl animate-bounce">✨</span>
+          </div>
+          <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-lime-400 bg-clip-text text-transparent mb-6">
+            CleanCity Features
           </h1>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Discover all the powerful features that make CleanCity your go-to platform for environmental reporting and community engagement.
+          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            Explore powerful AI-driven tools and community features that make environmental reporting accessible, engaging, and impactful.
           </p>
         </div>
 
-        {/* Stats Section */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+        {/* Quick Stats - Enhanced */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20">
           {stats.map((stat, idx) => (
             <div
               key={idx}
-              className="bg-gradient-to-br from-cyan-500/10 to-fuchsia-500/10 border border-cyan-400/20 rounded-xl p-6 text-center hover:border-fuchsia-400/40 transition-all"
+              className="group relative bg-gradient-to-br from-cyan-500/10 to-fuchsia-500/10 border border-cyan-400/30 rounded-2xl p-8 text-center hover:border-fuchsia-400/60 transition-all duration-300 overflow-hidden cursor-pointer transform hover:scale-105"
             >
-              <div className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-fuchsia-400 bg-clip-text text-transparent mb-2">
-                {stat.value}
+              {/* Hover effect background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-lime-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="relative">
+                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-400 to-fuchsia-400 bg-clip-text text-transparent mb-3 animate-pulse">
+                  {stat.value}
+                </div>
+                <div className="text-gray-300 text-base font-medium">{stat.label}</div>
               </div>
-              <div className="text-gray-300 text-sm">{stat.label}</div>
             </div>
           ))}
         </div>
 
-        {/* Features Grid */}
-        <div className="space-y-4">
-          <h2 className="text-3xl font-bold text-white mb-8 flex items-center gap-2">
-            <span className="text-cyan-400">✨</span> All Features
-          </h2>
+        {/* Features Section */}
+        <div className="mb-20">
+          <div className="flex items-center gap-3 mb-12">
+            <div className="w-1 h-12 bg-gradient-to-b from-cyan-400 to-fuchsia-400 rounded-full"></div>
+            <h2 className="text-4xl font-bold text-white">Core Features</h2>
+            <div className="flex-1 h-1 bg-gradient-to-r from-fuchsia-400 to-transparent rounded-full"></div>
+          </div>
 
-          {features.map((feature, idx) => (
-            <div
-              key={idx}
-              className="bg-gradient-to-r from-cyan-500/5 via-fuchsia-500/5 to-lime-500/5 border border-cyan-400/20 rounded-xl overflow-hidden hover:border-fuchsia-400/40 transition-all"
-            >
-              <button
-                onClick={() => setExpandedFeature(expandedFeature === idx ? -1 : idx)}
-                className="w-full p-6 flex items-center justify-between hover:bg-cyan-500/5 transition-colors"
+          {/* Feature Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            {features.slice(0, 6).map((feature, idx) => (
+              <div
+                key={idx}
+                className="group relative h-full"
+                onMouseEnter={() => setHoveredCard(idx)}
+                onMouseLeave={() => setHoveredCard(null)}
               >
-                <div className="flex items-center gap-4 text-left">
-                  <div className="text-4xl">{feature.icon}</div>
-                  <div>
-                    <h3 className="text-xl font-bold text-white">{feature.title}</h3>
-                    <p className="text-gray-400 text-sm mt-1">{feature.description}</p>
+                {/* Gradient border effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/30 via-fuchsia-500/30 to-lime-500/30 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                <div className="relative h-full bg-gradient-to-br from-slate-900/80 via-indigo-900/80 to-slate-900/80 border border-cyan-400/20 rounded-2xl p-8 backdrop-blur-sm hover:border-fuchsia-400/50 transition-all duration-300">
+                  {/* Icon Section */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="text-6xl transform group-hover:scale-125 transition-transform duration-300">
+                      {feature.icon}
+                    </div>
+                    <div className="hidden group-hover:block">
+                      <div className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-fuchsia-500 rounded-full opacity-20"></div>
+                    </div>
                   </div>
-                </div>
-                <ChevronDown
-                  size={24}
-                  className={`text-cyan-400 transition-transform ${
-                    expandedFeature === idx ? 'transform rotate-180' : ''
-                  }`}
-                />
-              </button>
 
-              {/* Expanded Content */}
-              {expandedFeature === idx && (
-                <div className="px-6 pb-6 border-t border-cyan-400/10">
-                  <div className="space-y-4">
-                    <div>
-                      <h4 className="text-lg font-semibold text-cyan-300 mb-3">Key Benefits:</h4>
-                      <ul className="space-y-2">
-                        {feature.benefits.map((benefit, bIdx) => (
-                          <li key={bIdx} className="flex items-start gap-3 text-gray-300">
-                            <span className="text-lime-400 mt-1">✓</span>
-                            <span>{benefit}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-semibold text-fuchsia-300 mb-2">How to Use:</h4>
-                      <p className="text-gray-300 bg-black/30 p-4 rounded-lg border border-fuchsia-400/20">
-                        {feature.usage}
-                      </p>
-                    </div>
+                  {/* Content */}
+                  <h3 className="text-2xl font-bold text-white mb-2">{feature.title}</h3>
+                  <p className="text-gray-300 text-sm mb-6">{feature.description}</p>
+
+                  {/* Quick benefits preview */}
+                  <div className="flex flex-wrap gap-2">
+                    {feature.benefits.slice(0, 2).map((benefit, bIdx) => (
+                      <span
+                        key={bIdx}
+                        className="text-xs bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 px-3 py-1 rounded-full"
+                      >
+                        {benefit.split(':')[0]}
+                      </span>
+                    ))}
+                    {feature.benefits.length > 2 && (
+                      <span className="text-xs bg-fuchsia-500/20 border border-fuchsia-400/40 text-fuchsia-300 px-3 py-1 rounded-full">
+                        +{feature.benefits.length - 2} more
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Learn more indicator */}
+                  <div className="mt-6 flex items-center gap-2 text-cyan-400 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span>Expand to learn more</span>
+                    <ChevronDown size={16} className="transform group-hover:translate-y-1 transition-transform" />
                   </div>
                 </div>
-              )}
-            </div>
-          ))}
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Call to Action */}
-        <div className="mt-16 bg-gradient-to-r from-cyan-500/20 via-fuchsia-500/20 to-lime-500/20 border border-cyan-400/30 rounded-2xl p-8 text-center">
-          <h3 className="text-2xl font-bold text-white mb-4">Ready to Make a Difference?</h3>
-          <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-            Join our community of environmental heroes. Start reporting waste, earn points, climb the leaderboard, and help keep your neighborhood clean!
-          </p>
-          <button className="bg-gradient-to-r from-cyan-500 via-fuchsia-500 to-lime-500 text-white font-bold py-3 px-8 rounded-xl hover:shadow-2xl hover:shadow-cyan-500/50 transition-all transform hover:scale-105">
-            Start Reporting Now
-          </button>
+        {/* Expandable Features Section */}
+        <div className="mb-20">
+          <div className="flex items-center gap-3 mb-12">
+            <div className="w-1 h-12 bg-gradient-to-b from-lime-400 to-cyan-400 rounded-full"></div>
+            <h2 className="text-4xl font-bold text-white">All Features In Detail</h2>
+            <div className="flex-1 h-1 bg-gradient-to-r from-lime-400 to-transparent rounded-full"></div>
+          </div>
+
+          <div className="space-y-4">
+            {features.map((feature, idx) => (
+              <div
+                key={idx}
+                className="group bg-gradient-to-r from-cyan-500/5 via-fuchsia-500/5 to-lime-500/5 border border-cyan-400/20 rounded-2xl overflow-hidden hover:border-fuchsia-400/40 transition-all duration-300"
+              >
+                <button
+                  onClick={() => setExpandedFeature(expandedFeature === idx ? -1 : idx)}
+                  className="w-full p-6 md:p-8 flex items-center justify-between hover:bg-cyan-500/5 transition-all duration-200"
+                >
+                  <div className="flex items-center gap-4 md:gap-6 text-left flex-1">
+                    <div className="text-5xl flex-shrink-0 filter group-hover:drop-shadow-lg transition-all">
+                      {feature.icon}
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+                        {feature.title}
+                      </h3>
+                      <p className="text-gray-400 text-sm md:text-base mt-1">{feature.description}</p>
+                    </div>
+                  </div>
+                  <ChevronDown
+                    size={28}
+                    className={`text-cyan-400 transition-all flex-shrink-0 ml-4 group-hover:text-fuchsia-400 ${
+                      expandedFeature === idx ? 'transform rotate-180' : ''
+                    }`}
+                  />
+                </button>
+
+                {/* Expanded Content with smooth animation */}
+                {expandedFeature === idx && (
+                  <div className="px-6 md:px-8 pb-8 border-t border-cyan-400/10 animate-in fade-in slide-in-from-top-2 duration-300">
+                    <div className="space-y-6">
+                      <div>
+                        <h4 className="text-lg font-semibold text-cyan-300 mb-4 flex items-center gap-2">
+                          <Zap size={20} />
+                          Key Benefits
+                        </h4>
+                        <ul className="space-y-3 grid grid-cols-1 md:grid-cols-2 gap-3">
+                          {feature.benefits.map((benefit, bIdx) => (
+                            <li
+                              key={bIdx}
+                              className="flex items-start gap-3 text-gray-300 p-3 rounded-lg bg-black/20 border border-cyan-400/10 hover:border-cyan-400/30 transition-all"
+                            >
+                              <span className="text-lime-400 mt-1 flex-shrink-0 text-lg">✓</span>
+                              <span className="text-sm md:text-base">{benefit}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-fuchsia-300 mb-3 flex items-center gap-2">
+                          <Users size={20} />
+                          How to Use
+                        </h4>
+                        <div className="bg-gradient-to-r from-fuchsia-500/10 to-rose-500/10 border border-fuchsia-400/20 p-6 rounded-xl text-gray-300 leading-relaxed">
+                          {feature.usage}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Features Highlight Section */}
+        <div className="mb-20">
+          <div className="flex items-center gap-3 mb-12">
+            <div className="w-1 h-12 bg-gradient-to-b from-rose-400 to-fuchsia-400 rounded-full"></div>
+            <h2 className="text-4xl font-bold text-white">Why Choose CleanCity?</h2>
+            <div className="flex-1 h-1 bg-gradient-to-r from-rose-400 to-transparent rounded-full"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="group relative bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-400/20 rounded-2xl p-8 hover:border-cyan-400/60 transition-all overflow-hidden">
+              <div className="absolute top-0 right-0 -mt-8 -mr-8 w-32 h-32 bg-cyan-400 rounded-full opacity-10 group-hover:opacity-20 transition-opacity"></div>
+              <div className="relative z-10">
+                <div className="text-5xl mb-4">⚡</div>
+                <h3 className="text-2xl font-bold text-white mb-3">Lightning Fast</h3>
+                <p className="text-gray-300">Real-time AI analysis powered by cutting-edge machine learning models for instant waste classification.</p>
+              </div>
+            </div>
+
+            <div className="group relative bg-gradient-to-br from-fuchsia-500/10 to-pink-500/10 border border-fuchsia-400/20 rounded-2xl p-8 hover:border-fuchsia-400/60 transition-all overflow-hidden">
+              <div className="absolute top-0 right-0 -mt-8 -mr-8 w-32 h-32 bg-fuchsia-400 rounded-full opacity-10 group-hover:opacity-20 transition-opacity"></div>
+              <div className="relative z-10">
+                <div className="text-5xl mb-4">🌍</div>
+                <h3 className="text-2xl font-bold text-white mb-3">Community Driven</h3>
+                <p className="text-gray-300">Join thousands of environmental heroes making a real difference in their neighborhoods.</p>
+              </div>
+            </div>
+
+            <div className="group relative bg-gradient-to-br from-lime-500/10 to-green-500/10 border border-lime-400/20 rounded-2xl p-8 hover:border-lime-400/60 transition-all overflow-hidden">
+              <div className="absolute top-0 right-0 -mt-8 -mr-8 w-32 h-32 bg-lime-400 rounded-full opacity-10 group-hover:opacity-20 transition-opacity"></div>
+              <div className="relative z-10">
+                <div className="text-5xl mb-4">🎯</div>
+                <h3 className="text-2xl font-bold text-white mb-3">Easy to Use</h3>
+                <p className="text-gray-300">Simple, intuitive interface that works on any device. Start reporting waste in seconds.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Call to Action - Enhanced */}
+        <div className="mb-16 relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-fuchsia-500/20 to-lime-500/20 rounded-3xl blur-2xl opacity-50"></div>
+          <div className="relative bg-gradient-to-r from-cyan-500/20 via-fuchsia-500/20 to-lime-500/20 border border-cyan-400/40 rounded-3xl p-12 md:p-16 text-center overflow-hidden">
+            {/* Animated background elements */}
+            <div className="absolute inset-0 overflow-hidden rounded-3xl">
+              <div className="absolute top-0 left-0 w-40 h-40 bg-cyan-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+              <div className="absolute bottom-0 right-0 w-40 h-40 bg-fuchsia-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+            </div>
+
+            <div className="relative z-10">
+              <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Make a Difference? 🌱</h3>
+              <p className="text-gray-200 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
+                Join our community of environmental heroes. Start reporting waste, earn rewards, climb the leaderboard, and help keep your neighborhood clean!
+              </p>
+              <button className="group relative bg-gradient-to-r from-cyan-500 via-fuchsia-500 to-lime-500 text-white font-bold py-4 px-10 md:px-12 rounded-xl overflow-hidden text-lg transition-all duration-300 transform hover:scale-110 hover:shadow-2xl hover:shadow-cyan-500/50">
+                <span className="relative z-10 flex items-center gap-2 justify-center">
+                  <span>🚀 Start Reporting Now</span>
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-lime-500 via-fuchsia-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* Footer Info */}
-        <div className="mt-12 text-center text-gray-400 text-sm">
-          <p>CleanCity - Powered by AI, Driven by Community 🌍</p>
+        <div className="text-center text-gray-400 text-sm md:text-base space-y-2">
+          <p>🌍 CleanCity - Powered by AI, Driven by Community</p>
+          <p className="text-xs text-gray-500">Making the world cleaner, one report at a time</p>
         </div>
       </div>
     </div>
