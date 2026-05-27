@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import About from '../pages/about';
 
 export default function Header({ points }) {
+  const [showAbout, setShowAbout] = useState(false);
   return (
     <header className="relative bg-gradient-to-r from-slate-950 via-indigo-950 to-slate-950 text-white shadow-2xl sticky top-0 z-50 border-b border-cyan-500/30 backdrop-blur-sm">
       {/* Animated background elements - Enhanced */}
@@ -47,6 +49,15 @@ export default function Header({ points }) {
 
           {/* Reward Points Section - Super Enhanced with Neon */}
           <div className="flex items-center gap-6">
+            {/* About button */}
+            <div className="hidden sm:block">
+              <button
+                onClick={() => setShowAbout(true)}
+                className="text-sm font-semibold px-3 py-2 rounded-md hover:bg-white/10 transition"
+              >
+                About
+              </button>
+            </div>
             {/* Impact Score with vibrant colors */}
             <div className="hidden sm:flex gap-3 items-center px-4 py-2 rounded-full bg-gradient-to-r from-violet-500/10 to-rose-500/10 border border-rose-400/30 hover:border-rose-400/70 transition-all">
               <div className="text-center">
@@ -113,5 +124,16 @@ export default function Header({ points }) {
         </p>
       </div>
     </header>
+
+      {/* About Modal */}
+      {showAbout && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/60" onClick={() => setShowAbout(false)} />
+          <div className="relative bg-white rounded-xl p-6 max-w-3xl w-full mx-4 text-slate-900">
+            <button className="absolute top-3 right-3 text-xl" onClick={() => setShowAbout(false)}>✕</button>
+            <About />
+          </div>
+        </div>
+      )}
   );
 }
